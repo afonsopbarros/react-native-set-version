@@ -3,23 +3,19 @@
   "version": "1.0.0",
   "description": "Set the version in package.json, android/app/build.gradle and info.plist",
   "license": "MIT",
-  "bin":
-  {
+  "bin": {
     "setVersion": "./build/index.js",
     "set-version": "./build/index.js"
   },
-  "files":
-  [
+  "files": [
     "build",
     "src"
   ],
-  "repository":
-  {
+  "repository": {
     "type": "git",
-    "url": "https://github.com/AMI3GOLtd/react-native-set-version"
+    "url": "https://github.com/afonsopbarros/react-native-set-version#f78e7591d93d70ae8fc524f304c8c1684c86f800"
   },
-  "keywords":
-  [
+  "keywords": [
     "version",
     "setVersion",
     "set-version",
@@ -29,15 +25,13 @@
     "react",
     "semver"
   ],
-  "bugs":
-  {
-    "url": "https://github.com/AMI3GOLtd/react-native-set-version/issues"
+  "bugs": {
+    "url": "https://github.com/afonsopbarros/react-native-set-version/issues"
   },
-  "homepage": "https://github.com/AMI3GOLtd/react-native-set-version#readme",
+  "homepage": "https://github.com/afonsopbarros/react-native-set-version#readme",
   "main": "index.js",
   "author": "AMI3GO Ltd",
-  "scripts":
-  {
+  "scripts": {
     "prepublishOnly": "yarn build",
     "build": "babel src --out-dir build --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\"",
     "lint": "eslint .",
@@ -45,15 +39,13 @@
     "test": "yarn lint & yarn unitTests",
     "unitTests": "jest --runInBand"
   },
-  "dependencies":
-  {
+  "dependencies": {
     "chalk": "^2.4.2",
     "gradle-to-js": "^2.0.0",
     "manifest-android": "^0.1.1",
     "plist": "^3.0.1"
   },
-  "devDependencies":
-  {
+  "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
