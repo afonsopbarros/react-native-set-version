@@ -1,5 +1,5 @@
 {
-  "name": "react-native-versioner",
+  "name": "react-native-platform-versions",
   "version": "1.0.0",
   "description": "Set the version in package.json, android/app/build.gradle and info.plist",
   "license": "MIT",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/afonsopbarros/react-native-set-version#f78e7591d93d70ae8fc524f304c8c1684c86f800"
+    "url": "https://github.com/afonsopbarros/react-native-set-version"
   },
   "keywords": [
     "version",
