@@ -178,10 +178,11 @@ async function setAndroidApplicationVersion(newVersionName, newVersionCode) {
 const changeVersion = async () => {
   display(_chalk.default.yellow(`---------------------`));
   display(_chalk.default.yellow(`Usage example:`));
-  display(_chalk.default.yellow(`command ${_chalk.default.bold.underline('set-version 1.0.1 2 ios')} set versions (marketing and build number) only for iOS`));
-  display(_chalk.default.yellow(`command ${_chalk.default.bold.underline('set-version 1.0.1 2 android')} set versions (versionName and versionCode) only for Android`));
-  display(_chalk.default.yellow(`command ${_chalk.default.bold.underline('set-version 1.0.1')} set version only on package.json because not platform was selected`));
+  display(_chalk.default.yellow(`command ${_chalk.default.bold('set-version 1.0.1 2 ios')} set versions (marketing and build number) only for iOS`));
+  display(_chalk.default.yellow(`command ${_chalk.default.bold('set-version 1.0.1 2 android')} set versions (versionName and versionCode) only for Android`));
+  display(_chalk.default.yellow(`command ${_chalk.default.bold('set-version 1.0.1')} set version only on package.json because not platform was selected`));
   display(_chalk.default.yellow(`---------------------`));
+  display('');
   const newVersionName = process.argv[2];
   const newVersionCode = process.argv[3];
   const platform = process.argv[4];
