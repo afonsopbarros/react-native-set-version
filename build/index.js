@@ -74,8 +74,7 @@ function getIOSVersionInfo(newVersionName, newVersionCode) {
 async function setIosApplicationVersion(newVersionName, newVersionCode) {
   const {
     version
-  } = await getIOSVersionInfo(newVersionName, newVersionCode);
-  const bundleVersion = `${version.major}.${version.minor}.${version.patch}.${version.build}`;
+  } = await getIOSVersionInfo(newVersionName, newVersionCode); // const bundleVersion = `${version.major}.${version.minor}.${version.patch}.${version.build}`;
 
   if (version) {
     display("");
@@ -83,13 +82,13 @@ async function setIosApplicationVersion(newVersionName, newVersionCode) {
     display(version);
     display("");
     display(_chalk.default.yellow(`Will set CFBundleShortVersionString to ${_chalk.default.bold.underline(newVersionName)}`));
-    display(_chalk.default.yellow(`Will set CFBundleVersion to ${_chalk.default.bold.underline(bundleVersion)}`));
+    display(_chalk.default.yellow(`Will set CFBundleVersion to ${_chalk.default.bold.underline(newVersionCode)}`));
 
     try {
       const plistInfo = _plist.default.parse(_fs.default.readFileSync(paths.infoPlist, "utf8"));
 
       plistInfo.CFBundleShortVersionString = newVersionName;
-      plistInfo.CFBundleVersion = bundleVersion;
+      plistInfo.CFBundleVersion = newVersionCode;
 
       _fs.default.writeFileSync(paths.infoPlist, _plist.default.build(plistInfo), "utf8");
 
