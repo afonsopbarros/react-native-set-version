@@ -14,7 +14,7 @@ const paths = {
   androidManifest: './android/app/src/main/AndroidManifest.xml',
   buildGradle: './android/app/build.gradle',
   infoPlist: './ios/<APP_NAME>/Info.plist',
-  packageJson: './package.json',
+  packageJson: './app.json',
 };
 
 function setPackageVersion(versionText, versionCode, platform) {
