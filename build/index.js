@@ -24,13 +24,20 @@ const paths = {
   packageJson: './package.json'
 };
 
-function setPackageVersion(versionText) {
+function setPackageVersion(versionText, versionCode, platform) {
   let packageJSON = null;
 
   try {
     packageJSON = JSON.parse(_fs.default.readFileSync(paths.packageJson));
     display(_chalk.default.yellow(`Will set package version to ${_chalk.default.bold.underline(versionText)}`));
     packageJSON.version = versionText;
+
+    if (platform === "ios") {// packageJSON.ios_version.marketing = versionText
+      // packageJSON.ios_version.build = versionText
+    } else {
+      packageJSON.android_version.name = versionText;
+      packageJSON.android_version.code = versionCode;
+    }
 
     _fs.default.writeFileSync(paths.packageJson, `${JSON.stringify(packageJSON, null, '\t')}\n`);
 
@@ -172,7 +179,8 @@ const changeVersion = async () => {
   const newVersionName = process.argv[2];
   const newVersionCode = process.argv[3];
   const platform = process.argv[4];
-  const appName = setPackageVersion(newVersionName).name;
+  const appName = setPackageVersion(newVersionName, newVersionCode, platform).name;
+  display('');
 
   if (platform === "ios") {
     display(_chalk.default.yellow(`Platform selected:${_chalk.default.bold.underline('iOS')}`));
