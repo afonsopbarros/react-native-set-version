@@ -32,9 +32,10 @@ function setPackageVersion(versionText, versionCode, platform) {
     display(_chalk.default.yellow(`Will set package version to ${_chalk.default.bold.underline(versionText)}`));
     packageJSON.version = versionText;
 
-    if (platform === "ios") {// packageJSON.ios_version.marketing = versionText
-      // packageJSON.ios_version.build = versionText
-    } else {
+    if (platform === "ios") {
+      packageJSON.ios_version.marketing = versionText;
+      packageJSON.ios_version.build = versionCode;
+    } else if (platform === "android") {
       packageJSON.android_version.name = versionText;
       packageJSON.android_version.code = versionCode;
     }
@@ -175,6 +176,12 @@ async function setAndroidApplicationVersion(newVersionName, newVersionCode) {
 }
 
 const changeVersion = async () => {
+  display(_chalk.default.yellow(`---------------------`));
+  display(_chalk.default.yellow(`Usage example:`));
+  display(_chalk.default.yellow(`command ${_chalk.default.bold.underline('set-version 1.0.1 2 ios')} set versions (marketing and build number) only for iOS`));
+  display(_chalk.default.yellow(`command ${_chalk.default.bold.underline('set-version 1.0.1 2 android')} set versions (versionName and versionCode) only for Android`));
+  display(_chalk.default.yellow(`command ${_chalk.default.bold.underline('set-version 1.0.1')} set version only on package.json because not platform was selected`));
+  display(_chalk.default.yellow(`---------------------`));
   const newVersionName = process.argv[2];
   const newVersionCode = process.argv[3];
   const platform = process.argv[4];
@@ -182,12 +189,14 @@ const changeVersion = async () => {
   display('');
 
   if (platform === "ios") {
-    display(_chalk.default.yellow(`Platform selected:${_chalk.default.bold.underline('iOS')}`));
+    display(_chalk.default.yellow(`Platform selected: ${_chalk.default.bold.underline('iOS')}`));
     paths.infoPlist = paths.infoPlist.replace('<APP_NAME>', appName);
     await setIosApplicationVersion(newVersionName, newVersionCode);
-  } else {
-    display(_chalk.default.yellow(`Platform selected:${_chalk.default.bold.underline('Android')}`));
+  } else if (platform === "android") {
+    display(_chalk.default.yellow(`Platform selected: ${_chalk.default.bold.underline('Android')}`));
     await setAndroidApplicationVersion(newVersionName, newVersionCode);
+  } else {
+    display(_chalk.default.green(`Only package version was changed`));
   }
 
   display('');
