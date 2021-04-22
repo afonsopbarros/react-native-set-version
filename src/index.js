@@ -68,7 +68,7 @@ function getIOSVersionInfo(newVersionName, newVersionCode) {
 
 async function setIosApplicationVersion(newVersionName, newVersionCode) {
   const { version } = await getIOSVersionInfo(newVersionName, newVersionCode);
-  const bundleVersion = `${version.major}.${version.minor}.${version.patch}.${version.build}`;
+  // const bundleVersion = `${version.major}.${version.minor}.${version.patch}.${version.build}`;
   if (version) {
     display('');
     display(chalk.yellow('IOS version info:'));
@@ -77,11 +77,11 @@ async function setIosApplicationVersion(newVersionName, newVersionCode) {
     display('');
 
     display(chalk.yellow(`Will set CFBundleShortVersionString to ${chalk.bold.underline(newVersionName)}`));
-    display(chalk.yellow(`Will set CFBundleVersion to ${chalk.bold.underline(bundleVersion)}`));
+    display(chalk.yellow(`Will set CFBundleVersion to ${chalk.bold.underline(newVersionCode)}`));
     try {
       const plistInfo = plist.parse(fs.readFileSync(paths.infoPlist, 'utf8'));
       plistInfo.CFBundleShortVersionString = newVersionName;
-      plistInfo.CFBundleVersion = bundleVersion;
+      plistInfo.CFBundleVersion = newVersionCode;
       fs.writeFileSync(paths.infoPlist, plist.build(plistInfo), 'utf8');
       display(chalk.green(`Version replaced in ${chalk.bold('Info.plist')}`));
     } catch (err) {
@@ -159,7 +159,7 @@ const changeVersion = async () => {
   const appName = setPackageVersion(newVersionName, newVersionCode, platform).name;
   
   display('');
-  
+
   if (platform === "ios") {
     display(chalk.yellow(`Platform selected:${chalk.bold.underline('iOS')}`));
     paths.infoPlist = paths.infoPlist.replace('<APP_NAME>', appName);
