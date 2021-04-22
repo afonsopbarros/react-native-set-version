@@ -172,11 +172,17 @@ const changeVersion = async () => {
   const newVersionName = process.argv[2];
   const newVersionCode = process.argv[3];
   const platform = process.argv[4];
-  display(platform);
   const appName = setPackageVersion(newVersionName).name;
-  paths.infoPlist = paths.infoPlist.replace('<APP_NAME>', appName);
-  await setAndroidApplicationVersion(newVersionName, newVersionCode);
-  await setIosApplicationVersion(newVersionName, newVersionCode);
+
+  if (platform === "ios") {
+    display(_chalk.default.yellow(`Platform selected:${_chalk.default.bold.underline('iOS')}`));
+    paths.infoPlist = paths.infoPlist.replace('<APP_NAME>', appName);
+    await setIosApplicationVersion(newVersionName, newVersionCode);
+  } else {
+    display(_chalk.default.yellow(`Platform selected:${_chalk.default.bold.underline('Android')}`));
+    await setAndroidApplicationVersion(newVersionName, newVersionCode);
+  }
+
   display('');
 };
 
