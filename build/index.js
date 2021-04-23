@@ -171,7 +171,7 @@ const changeVersion = async () => {
   const newVersionName = process.argv[2];
   const newVersionCode = process.argv[3];
   const platform = process.argv[4];
-  const appName = setPackageVersion(newVersionName).name;
+  const appName = JSON.parse(_fs.default.readFileSync(paths.packageJson)).name;
   paths.infoPlist = paths.infoPlist.replace("<APP_NAME>", appName);
 
   if (platform) {
