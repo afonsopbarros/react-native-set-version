@@ -119,7 +119,9 @@ async function getAndroidVersionInfo(newVersionName, newVersionCode) {
       versionCode: newVersionCode
     };
   } catch (err) {
-    display(_chalk.default.yellowBright(`${_chalk.default.bold.underline("WARNING:")} Cannot find attribute versionCode in file ${_path.default.resolve(paths.buildGradle)}. Android version configuration will be skipped`));
+    display(_chalk.default.yellowBright(`${_chalk.default.bold.underline("WARNING:")} Cannot find attribute versionCode in file ${_path.default.resolve(paths.buildGradle)}. Android version configuration will be skipped
+        \n
+        ${err}`));
   }
 
   return versionInfo;

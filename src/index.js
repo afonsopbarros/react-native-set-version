@@ -158,7 +158,9 @@ async function getAndroidVersionInfo(newVersionName, newVersionCode) {
           "WARNING:"
         )} Cannot find attribute versionCode in file ${path.resolve(
           paths.buildGradle
-        )}. Android version configuration will be skipped`
+        )}. Android version configuration will be skipped
+        \n
+        ${err}`
       )
     );
   }
